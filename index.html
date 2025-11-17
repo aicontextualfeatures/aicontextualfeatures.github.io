@@ -3,62 +3,737 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>Farrukh Khan</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
     }
-    header {
-      background: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1d243a 0, #020617 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
     }
-    nav {
-      background: #555;
-      padding: 0.5rem;
-    }
-    nav a {
-      color: white;
-      margin-right: 1rem;
+
+    a {
+      color: inherit;
       text-decoration: none;
     }
-    .container {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-      background: white;
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.92),
+        rgba(2, 6, 23, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(30, 64, 175, 0.4);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #4ade80, #22d3ee, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.65),
+        0 14px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, #38bdf8, #1d4ed8);
+      color: #0b1120;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.75);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 18px 64px;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+      gap: 28px;
+      align-items: center;
+      padding-top: 32px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #38bdf8, #22c55e, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.08s ease-out;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #38bdf8, #1d4ed8);
+      color: #0b1120;
+      box-shadow: 0 16px 34px rgba(37, 99, 235, 0.75);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(75, 85, 99, 0.9);
+      color: var(--text);
+    }
+
+    .btn-primary:hover,
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      padding: 22px 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-tag {
+      position: absolute;
+      inset: 16px auto auto 16px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(30, 64, 175, 0.25);
+      border: 1px solid rgba(59, 130, 246, 0.7);
+      color: #c7d2fe;
+    }
+
+    .hero-pill {
+      position: absolute;
+      inset: auto 16px 16px auto;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    .hero-card-main {
+      margin-top: 32px;
+      padding-top: 4px;
+    }
+
+    .hero-card-title {
+      font-size: 1.02rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .metric {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 10px 11px;
+      font-size: 0.78rem;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Section heading */
+    .section-heading {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 620px;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 22px;
+    }
+
+    .about-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.85);
+      font-size: 0.9rem;
+    }
+
+    .about-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+      font-size: 0.86rem;
+    }
+
+    .project-title {
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 0.78rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    /* Contact */
+    .contact-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.85);
+      max-width: 560px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-email {
+      font-size: 1rem;
+      word-break: break-all;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.8rem;
+    }
+
+    .social-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
     footer {
-      background: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      margin-top: 2rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 30px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 18px 22px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        order: -1;
+      }
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding-top: 18px;
+      }
+      .section {
+        padding-inline: 16px;
+      }
+      .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-title {
+        font-size: 2.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Website</h1>
-  </header>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="nav-logo">
+          <div class="nav-logo-badge">FK</div>
+          <div>
+            <div style="font-size: 0.9rem;">Farrukh Khan</div>
+            <div style="font-size: 0.72rem; color: var(--muted);">
+              Portfolio &amp; Projects
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <a href="#contact" class="nav-cta">Let’s connect</a>
+        </div>
+      </nav>
+    </header>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <main>
+      <!-- Hero -->
+      <section class="section" id="top">
+        <div class="hero">
+          <div>
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Open to interesting opportunities
+            </div>
+            <h1 class="hero-title">
+              Hi, I’m <span>Farrukh Khan</span>.
+            </h1>
+            <p class="hero-subtitle">
+              This is a simple personal site where I can showcase who I am,
+              what I work on, and how to reach me. Feel free to customize the
+              text, add more sections, or link out to my projects.
+            </p>
 
-  <div class="container">
-    <h2>Page Title</h2>
-    <p>This is a simple website template you can customize.</p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn-primary">View my work</a>
+              <a href="#about" class="btn-ghost">About me</a>
+            </div>
+
+            <div class="hero-meta">
+              <span>Based on a clean, modern layout</span>
+              <span>Built with HTML &amp; CSS only</span>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Quick profile highlight">
+            <div class="hero-card-tag">Snapshot</div>
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              Portfolio preview
+            </div>
+
+            <div class="hero-card-main">
+              <div class="hero-card-title">Farrukh Khan</div>
+              <div class="hero-card-sub">Brief profile</div>
+              <p style="color: var(--muted); font-size: 0.82rem; margin-bottom: 10px;">
+                Replace this with a one-line summary about yourself, your role,
+                or your main interests.
+              </p>
+
+              <div class="hero-metrics">
+                <div class="metric">
+                  <div class="metric-label">Focus</div>
+                  <div class="metric-value">Tech • AI • Products</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Location</div>
+                  <div class="metric-value">Your City, Country</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Currently</div>
+                  <div class="metric-value">Open to collaboration</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Contact</div>
+                  <div class="metric-value">Scroll to contact ↓</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section" id="about">
+        <h2 class="section-heading">About Farrukh</h2>
+        <p class="section-subtitle">
+          A short introduction section. Replace this text with your background,
+          what you’re good at, and what you enjoy working on.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Who I am</h3>
+            <p>
+              I’m Farrukh Khan, and this website is my online home. Here I can
+              briefly describe my experience, education, or interests. You can
+              keep it high-level or go into more detail—up to you.
+            </p>
+            <p>
+              Use this space to share what motivates you, what problems you like
+              solving, and what kind of opportunities you’re looking for.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Highlights &amp; keywords</h3>
+            <p>
+              Swap these tags with your real skills, tools, or domains so people
+              quickly see what you work with.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Product &amp; Tech</span>
+              <span class="tag">AI &amp; Automation</span>
+              <span class="tag">Data-driven</span>
+              <span class="tag">Problem solving</span>
+              <span class="tag">Mentoring</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section" id="projects">
+        <h2 class="section-heading">Projects &amp; Work</h2>
+        <p class="section-subtitle">
+          A few example cards you can replace with your real projects, roles, or
+          achievements. Link each one to GitHub, a slide deck, or a live demo.
+        </p>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-title">Project One</div>
+            <div class="project-desc">
+              Short description of something you’ve built, led, or contributed
+              to. Mention the outcome or what makes it interesting.
+            </div>
+            <div class="project-meta">
+              <span>Tagline or tech stack</span>
+              <a href="#" class="project-link">View</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-title">Project Two</div>
+            <div class="project-desc">
+              Another highlight. This could be a personal project, a course
+              assignment, or a professional achievement.
+            </div>
+            <div class="project-meta">
+              <span>Tagline or tech stack</span>
+              <a href="#" class="project-link">View</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-title">Project Three</div>
+            <div class="project-desc">
+              Describe what you did, what problem it solved, and any measurable
+              impact if you have it.
+            </div>
+            <div class="project-meta">
+              <span>Tagline or tech stack</span>
+              <a href="#" class="project-link">View</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <h2 class="section-heading">Contact</h2>
+        <p class="section-subtitle">
+          Add your preferred way to be contacted. You can share an email, LinkedIn,
+          GitHub, or any other platform you like.
+        </p>
+
+        <div class="contact-card">
+          <div class="contact-grid">
+            <div>
+              <div class="contact-label">Email</div>
+              <!-- Replace with your real email if you’d like -->
+              <div class="contact-email">
+                farrukh.khan@example.com
+              </div>
+              <p style="color: var(--muted); font-size: 0.83rem; margin-top: 8px;">
+                Feel free to reach out for collaboration, questions, or
+                opportunities.
+              </p>
+            </div>
+            <div>
+              <div class="contact-label">Elsewhere</div>
+              <div class="social-row">
+                <a href="#" class="social-pill">LinkedIn</a>
+                <a href="#" class="social-pill">GitHub</a>
+                <a href="#" class="social-pill">Portfolio</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>&copy; <span id="year"></span> Farrukh Khan. All rights reserved.</span>
+        <span>Built with HTML &amp; CSS • Deployed via GitHub Pages</span>
+      </div>
+    </footer>
   </div>
 
-  <footer>
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-  </footer>
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
